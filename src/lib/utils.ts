@@ -1,4 +1,5 @@
-import { clsx, type ClassValue } from "clsx";
+import { clsx } from "clsx";
+import type { ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
 
 export function cn(...inputs: ClassValue[]) {
@@ -12,4 +13,14 @@ export function stringCaseCombinations(input: string): string[] {
   return Array.from({ length: 1 << input.length }, (_, comb) =>
     [...input].map((char, index) => combine(char, index, comb)).join(""),
   );
+}
+
+export function getBaseURL() {
+  if (typeof window !== "undefined") {
+    return "";
+  }
+  if (process.env.VERCEL_URL) {
+    return `https://${process.env.VERCEL_URL}`;
+  }
+  return "http://localhost:3000";
 }
