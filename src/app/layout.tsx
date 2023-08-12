@@ -10,8 +10,10 @@ import { useState } from "react";
 import { Inter } from "next/font/google";
 import { ThemeProvider } from "@/components/theme-provider";
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const inter = Inter({ subsets: ["latin"] });
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const metadata = {
   title: "Name Seeker",
   description: "Find out if your project name is taken",
