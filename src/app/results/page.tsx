@@ -59,24 +59,6 @@ async function fetchDataForService(
   }
 }
 
-export default function ResultsPage(props: { searchTerm: string }) {
-  return services.map((service) => (
-    <Suspense
-      fallback={
-        <div className="my-3 flex items-center space-x-4">
-          <Skeleton className="h-12 w-12 rounded-full" />
-          <div className="space-y-2">
-            <Skeleton className="h-4 w-[250px]" />
-            <Skeleton className="h-4 w-[200px]" />
-          </div>
-        </div>
-      }
-    >
-      <ServiceItem serviceName={service} searchTerm={props.searchTerm} />
-    </Suspense>
-  ));
-}
-
 async function ServiceItem(props: {
   serviceName: (typeof services)[number];
   searchTerm: string;
@@ -92,4 +74,27 @@ async function ServiceItem(props: {
       </AlertDescription>
     </Alert>
   );
+}
+
+export default function ResultsPage(props: {
+  searchParams: { search?: string };
+}) {
+  return services.map((service) => (
+    <Suspense
+      fallback={
+        <div className="my-3 flex items-center space-x-4">
+          <Skeleton className="h-12 w-12 rounded-full" />
+          <div className="space-y-2">
+            <Skeleton className="h-4 w-[250px]" />
+            <Skeleton className="h-4 w-[200px]" />
+          </div>
+        </div>
+      }
+    >
+      <ServiceItem
+        serviceName={service}
+        searchTerm={props.searchParams.search ?? ""}
+      />
+    </Suspense>
+  ));
 }
