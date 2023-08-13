@@ -1,8 +1,10 @@
+import { Suspense } from "react";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { getBaseURL } from "@/lib/utils";
-// import { useQueries, useSuspenseQueries } from "@tanstack/react-query";
 import { Terminal } from "lucide-react";
 import { literal, object, string, union, ValiError } from "valibot";
+
+import { Skeleton } from "./ui/skeleton";
 
 const services = [
   "pypi",
@@ -60,7 +62,19 @@ async function fetchDataForService(
 
 export default function ServiceList(props: { searchTerm: string }) {
   return services.map((service) => (
-    <ServiceItem serviceName={service} searchTerm={props.searchTerm} />
+    <Suspense
+      fallback={
+        <div className="flex items-center space-x-4">
+          <Skeleton className="h-12 w-12 rounded-full" />
+          <div className="space-y-2">
+            <Skeleton className="h-4 w-[250px]" />
+            <Skeleton className="h-4 w-[200px]" />
+          </div>
+        </div>
+      }
+    >
+      <ServiceItem serviceName={service} searchTerm={props.searchTerm} />
+    </Suspense>
   ));
 }
 
