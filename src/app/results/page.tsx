@@ -8,7 +8,7 @@ import { literal, object, string, union, ValiError } from "valibot";
 const services = [
   "pypi",
   "github",
-  // "github_org",
+  "github_org",
   // "gitlab",
   // "domain_name",
   // "homebrew",
@@ -22,7 +22,11 @@ const services = [
   // "packagist",
 ] as const;
 
-const ServiceSchema = union([literal("pypi"), literal("github")]);
+const ServiceSchema = union([
+  literal("pypi"),
+  literal("github"),
+  literal("github_org"),
+]);
 
 const ApiResponseSchema = union([
   object({
@@ -64,6 +68,18 @@ async function ServiceItem(props: {
   searchTerm: string;
 }) {
   const data = await fetchDataForService(props.serviceName, props.searchTerm);
+
+  if (data._exists === "no") {
+    return (
+      <Alert key={data.provider} className="my-3" variant="destructive">
+        <Terminal className="h-4 w-4" />
+        <AlertTitle>{data.provider}</AlertTitle>
+        <AlertDescription>
+          Sorry, this name is already taken. Try another one.
+        </AlertDescription>
+      </Alert>
+    );
+  }
 
   return (
     <Alert key={data.provider} className="my-3">
