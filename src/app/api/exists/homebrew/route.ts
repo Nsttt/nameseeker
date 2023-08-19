@@ -13,15 +13,15 @@ export async function GET(req: NextRequest) {
   const resFormula = await fetch(formulaUrl);
   const resCask = await fetch(caskUrl);
 
-  //   await new Promise((r) => setTimeout(r, 1000));
-
   const exists = resFormula.status !== 404 || resCask.status !== 404;
 
   return exists
     ? NextResponse.json({
         provider: "homebrew",
         _exists: "yes",
-        url: resCask.status !== 404 ? caskUrl : formulaUrl,
+        url: `https://formulae.brew.sh/${
+          resCask.status === 404 ? "formula" : "cask"
+        }/${name}`,
       })
     : NextResponse.json({ provider: "homebrew", _exists: "no" });
 }
