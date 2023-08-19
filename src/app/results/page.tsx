@@ -9,8 +9,7 @@ const services = [
   "pypi",
   "github",
   "github_org",
-  // "gitlab",
-  // "domain_name",
+  "gitlab",
   // "homebrew",
   // "apt",
   // "crates",
@@ -20,12 +19,24 @@ const services = [
   // "nuget",
   // "go",
   // "packagist",
+  // "domain_name",
 ] as const;
 
 const ServiceSchema = union([
   literal("pypi"),
   literal("github"),
   literal("github_org"),
+  literal("gitlab"),
+  // literal("homebrew"),
+  // literal("apt"),
+  // literal("crates"),
+  // literal("maven"),
+  // literal("npm"),
+  // literal("rubygems"),
+  // literal("nuget"),
+  // literal("go"),
+  // literal("packagist"),
+  // literal("domain_name"),
 ]);
 
 const ApiResponseSchema = union([
