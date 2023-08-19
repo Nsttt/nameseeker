@@ -18,7 +18,7 @@ const services = [
   "rubygems",
   "nuget",
   "go",
-  // "packagist",
+  "packagist",
   // "domain_name",
 ] as const;
 
@@ -35,7 +35,7 @@ const ServiceSchema = union([
   literal("rubygems"),
   literal("nuget"),
   literal("go"),
-  // literal("packagist"),
+  literal("packagist"),
   // literal("domain_name"),
 ]);
 
