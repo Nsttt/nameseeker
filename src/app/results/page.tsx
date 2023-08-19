@@ -10,7 +10,7 @@ const services = [
   "github",
   "github_org",
   "gitlab",
-  // "homebrew",
+  "homebrew",
   // "apt",
   // "crates",
   // "maven",
@@ -27,7 +27,7 @@ const ServiceSchema = union([
   literal("github"),
   literal("github_org"),
   literal("gitlab"),
-  // literal("homebrew"),
+  literal("homebrew"),
   // literal("apt"),
   // literal("crates"),
   // literal("maven"),
@@ -70,7 +70,7 @@ async function fetchDataForService(
       console.error(error);
       throw new Error(error.message);
     }
-    throw new Error("Something went wrong");
+    throw new Error(JSON.stringify(error));
   }
 }
 
