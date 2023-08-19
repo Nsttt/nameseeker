@@ -1,5 +1,10 @@
 import { Suspense } from "react";
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import {
+  Alert,
+  AlertDescription,
+  AlertTitle,
+  AlertUrl,
+} from "@/components/ui/alert";
 import { Skeleton } from "@/components/ui/skeleton";
 import { getBaseURL } from "@/lib/utils";
 import { Terminal } from "lucide-react";
@@ -99,6 +104,9 @@ async function ServiceItem(props: {
       <AlertDescription>
         Sorry, this name is already taken. Try another one.
       </AlertDescription>
+      <AlertUrl className="pt-2 font-bold" href={data.url}>
+        Source
+      </AlertUrl>
     </Alert>
   );
 }

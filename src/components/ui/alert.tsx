@@ -1,7 +1,7 @@
 import * as React from "react";
 import { cn } from "@/lib/utils";
-import { cva } from "class-variance-authority";
 import type { VariantProps } from "class-variance-authority";
+import { cva } from "class-variance-authority";
 
 const alertVariants = cva(
   "relative w-full rounded-lg border p-4 [&>svg~*]:pl-7 [&>svg+div]:translate-y-[-3px] [&>svg]:absolute [&>svg]:left-4 [&>svg]:top-4 [&>svg]:text-foreground",
@@ -56,4 +56,32 @@ const AlertDescription = React.forwardRef<
 ));
 AlertDescription.displayName = "AlertDescription";
 
-export { Alert, AlertTitle, AlertDescription };
+const AlertUrl = React.forwardRef<
+  HTMLAnchorElement,
+  React.DetailedHTMLProps<
+    React.AnchorHTMLAttributes<HTMLAnchorElement>,
+    HTMLAnchorElement
+  >
+>(
+  (
+    {
+      className,
+      href,
+      rel = "noopener noreferrer",
+      target = "_blank",
+      ...props
+    },
+    ref,
+  ) => (
+    <a
+      ref={ref}
+      className={cn("text-sm [&_p]:leading-relaxed", className)}
+      href={href}
+      rel={rel}
+      target={target}
+      {...props}
+    />
+  ),
+);
+
+export { Alert, AlertDescription, AlertTitle, AlertUrl };
