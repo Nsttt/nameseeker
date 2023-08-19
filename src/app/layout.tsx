@@ -5,6 +5,8 @@ import { redirect } from "next/navigation";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { ModeToggle } from "@/components/ui/mode-toggle";
+import { Github } from "lucide-react";
 
 import Providers from "./providers";
 
@@ -41,11 +43,22 @@ export default function RootLayout({
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
               <div className="mx-auto max-w-lg">
-                <h1 className="text-center text-4xl font-bold tracking-tight sm:text-6xl">
-                  Name Seeker
-                </h1>
+                <div className="mt-3 flex flex-row justify-between">
+                  <a
+                    className="my-2.5 transition-opacity duration-200 ease-in-out hover:opacity-50"
+                    href="https://github.com/nsttt/nameseeker"
+                    rel="noopener noreferrer"
+                    target="_blank"
+                  >
+                    <Github />
+                  </a>
+                  <h1 className="text-center text-4xl font-bold tracking-tight sm:text-6xl">
+                    Name Seeker
+                  </h1>
+                  <ModeToggle />
+                </div>
                 <p className="mt-2 text-center text-lg text-gray-500">
-                  Search if the name if your next idea is available everywhere
+                  Got a cool name? See if it's taken
                 </p>
                 <form
                   action={
@@ -65,6 +78,7 @@ export default function RootLayout({
                   </div>
                 </form>
                 {children}
+                Gi
               </div>
             </div>
           </ThemeProvider>
