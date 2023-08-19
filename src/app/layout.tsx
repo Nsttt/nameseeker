@@ -78,7 +78,6 @@ export default function RootLayout({
                   </div>
                 </form>
                 {children}
-                Gi
               </div>
             </div>
           </ThemeProvider>
